@@ -2,7 +2,7 @@
 Using geolocation with Ionic 2
 
 ### Check out the tutorial on the site
-http://webaxx.fr
+http://webaxx.fr/ionic-2/geolocalisation-avec-ionic-2/
 
 ### Install Ionic2 and Cordova
 `npm install -g ionic@beta`
