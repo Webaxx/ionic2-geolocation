@@ -1,0 +1,31 @@
+<ion-navbar *navbar teal>
+  <ion-title>Geolocation</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page">
+  <div id="map"></div>
+  <ion-card>
+
+    <ion-item>
+      <ion-icon name="map" item-left large></ion-icon>
+      <h2>Place</h2>
+      <p>{{address}}</p>
+    </ion-item>
+
+    <ion-item>
+      <button primary clear item-left (click)="geolocate()">
+        <ion-icon name="pin"></ion-icon>
+        Geolocate
+      </button>
+      <button *ngIf="!isWatching" primary clear item-right (click)="watchPosition()">
+        <ion-icon name="navigate"></ion-icon>
+        Watch
+      </button>
+      <button *ngIf="isWatching" primary clear item-right (click)="stopWatching()">
+        <ion-icon name="hand"></ion-icon>
+        Stop
+      </button>
+    </ion-item>
+  </ion-card>
+
+</ion-content>
