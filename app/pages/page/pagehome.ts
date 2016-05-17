@@ -37,25 +37,19 @@ export class PageHome {
   public geolocate():void{
 
       this.nav.present(this.loading);
-      setTimeout(()=>this._sleep(), 2000);
 
+      Geolocation.getCurrentPosition({timeout:5000, enableHighAccuracy:true}).then((position) => {
 
+        this.mapsService.moveToPosition(this.map, position.coords.latitude, position.coords.longitude);
 
-  }
+        this.mapsService.getAddress(position.coords.latitude, position.coords.longitude).then((data) => {
+          this.address = data[0].formatted_address;
+        });
 
-  private _sleep(){
-    Geolocation.getCurrentPosition({timeout:5000, enableHighAccuracy:true}).then((position) => {
-
-      this.mapsService.moveToPosition(this.map, position.coords.latitude, position.coords.longitude);
-
-      this.mapsService.getAddress(position.coords.latitude, position.coords.longitude).then((data) => {
-        this.address = data[0].formatted_address;
+        this._dismissLoading();
+      }).catch(error=>{
+        this._dismissLoading();
       });
-
-      this._dismissLoading();
-    }).catch(error=>{
-      this._dismissLoading();
-    });
   }
 
   /**
